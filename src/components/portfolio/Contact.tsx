@@ -1,0 +1,130 @@
+import { Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { toast } from "@/hooks/use-toast";
+
+const contactItems = [
+  { icon: Mail, label: "Email", value: "nirmal.cse.37@gmail.com", href: "mailto:nirmal.cse.37@gmail.com" },
+  { icon: Phone, label: "Phone", value: "+91 70105 61614", href: "tel:+917010561614" },
+  { icon: MapPin, label: "Location", value: "Tamil Nadu, India" },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "nirmal-gopalakrishnan",
+    href: "https://www.linkedin.com/in/nirmal-gopalakrishnan-b09999200",
+  },
+];
+
+export const Contact = () => {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.message) {
+      toast({ title: "Please fill in all fields", variant: "destructive" });
+      return;
+    }
+    setSending(true);
+    // Open mail client with prefilled content
+    const subject = encodeURIComponent(`Portfolio contact from ${form.name}`);
+    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
+    window.location.href = `mailto:nirmal.cse.37@gmail.com?subject=${subject}&body=${body}`;
+    setTimeout(() => {
+      toast({ title: "Opening your mail client...", description: "Thanks for reaching out!" });
+      setForm({ name: "", email: "", message: "" });
+      setSending(false);
+    }, 600);
+  };
+
+  return (
+    <section id="contact" className="py-24 sm:py-32 bg-secondary/30 relative">
+      <div className="container">
+        <div className="max-w-2xl mb-16">
+          <p className="font-mono text-sm text-primary mb-3">/ contact</p>
+          <h2 className="font-display text-4xl sm:text-5xl font-bold mb-4">
+            Let's <span className="text-gradient">build something</span>
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            Open to internships, collaborations, and roles in AI, software, and game development.
+            Drop me a line — I respond fast.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8">
+          <div className="space-y-3">
+            {contactItems.map((c) => {
+              const inner = (
+                <div className="group flex items-center gap-4 rounded-2xl bg-gradient-card border border-border p-5 shadow-card hover:shadow-elegant hover:-translate-y-0.5 transition-spring">
+                  <div className="h-12 w-12 rounded-xl bg-gradient-primary/10 grid place-items-center group-hover:bg-gradient-primary group-hover:shadow-glow transition-smooth">
+                    <c.icon className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-smooth" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-mono text-muted-foreground">{c.label}</p>
+                    <p className="font-medium truncate">{c.value}</p>
+                  </div>
+                </div>
+              );
+              return c.href ? (
+                <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+                  {inner}
+                </a>
+              ) : (
+                <div key={c.label}>{inner}</div>
+              );
+            })}
+          </div>
+
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-2xl bg-gradient-card border border-border p-6 sm:p-8 shadow-card space-y-5"
+          >
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  id="name"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  placeholder="Your name"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  placeholder="you@example.com"
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="message">Message</Label>
+              <Textarea
+                id="message"
+                rows={6}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                placeholder="Tell me about your project, role, or idea..."
+              />
+            </div>
+            <Button
+              type="submit"
+              size="lg"
+              disabled={sending}
+              className="w-full bg-gradient-primary hover:opacity-90 shadow-glow rounded-full"
+            >
+              <Send className="mr-2 h-4 w-4" />
+              {sending ? "Sending..." : "Send Message"}
+            </Button>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+};
