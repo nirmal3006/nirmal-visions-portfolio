@@ -65,6 +65,36 @@ const projects: Project[] = [
     emoji: "☁️",
   },
   {
+    title: "Stylized 3D Game Environment",
+    category: "Game",
+    description:
+      "A fully modeled and textured 3D game environment built in Blender — designed with attention to composition, lighting, and atmosphere for use in real-time game engines.",
+    features: [
+      "Modular environment modeling",
+      "PBR texturing & materials",
+      "Cinematic lighting setup",
+      "Game-engine ready assets",
+    ],
+    tech: ["Blender", "3D Modeling", "Texturing", "Lighting"],
+    demo: "https://www.linkedin.com/posts/nirmal-gopalakrishnan-b099992a0_gameenvironment-gamedevelopment-blender3d-share-7407310760755961856-SHfZ",
+    emoji: "🏞️",
+  },
+  {
+    title: "3D Game Asset Showcase",
+    category: "Game",
+    description:
+      "Hand-crafted 3D game-ready assets sculpted, modeled, and textured in Blender — showcasing form, silhouette, and material work for stylized game pipelines.",
+    features: [
+      "High-to-low poly workflow",
+      "UV unwrapping & baking",
+      "Stylized PBR materials",
+      "Render presentation",
+    ],
+    tech: ["Blender", "3D Art", "Substance", "Rendering"],
+    demo: "https://www.linkedin.com/posts/nirmal-gopalakrishnan-b099992a0_gamedevelopment-blender3d-3dartist-ugcPost-7422595204031098880--0Kl",
+    emoji: "🎮",
+  },
+  {
     title: "ATM System",
     category: "Software",
     description:
