@@ -1,6 +1,6 @@
 import { ArrowRight, Download, Mail, MapPin, Sparkles, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroCharacter from "@/assets/hero-character.png";
+const heroCharacter = "https://kommodo.ai/i/01pfkiQ4InVej9ULp1Tp";
 
 const orbitIcons = [
   { label: "PY", style: "top-[8%] left-[10%]", color: "from-yellow-400 to-blue-500", delay: "0s" },
