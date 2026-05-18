@@ -104,11 +104,11 @@ export const Hero = () => {
               </p>
               <div className="flex items-center gap-3 pt-3 border-t border-border/50">
                 <div className="h-10 w-10 rounded-full bg-gradient-primary grid place-items-center text-sm font-bold text-primary-foreground shadow-glow">
-                  RK
+                  AK
                 </div>
                 <div>
-                  <p className="text-sm font-semibold">Rahul Krishnan</p>
-                  <p className="text-xs text-primary">Mentor · Clover Technology</p>
+                  <p className="text-sm font-semibold">Akilan S T</p>
+                  <p className="text-xs text-primary">Trainer , HR · Clover Technology</p>
                 </div>
               </div>
             </div>

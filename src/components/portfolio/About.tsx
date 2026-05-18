@@ -11,10 +11,10 @@ const education = [
     period: "2022 — 2026",
     title: "B.E. Computer Science Engineering",
     place: "Kathir College of Engineering",
-    detail: "GPA: 7.1 / 10",
+    detail: "CGPA: 7.1",
   },
   {
-    period: "2020 — 2022",
+    period: "2021 — 2022",
     title: "Higher Secondary (HSC)",
     place: "State Board",
     detail: "Computer Science stream",
