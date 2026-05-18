@@ -1,10 +1,5 @@
 import { Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
-
-const EMAILJS_SERVICE_ID = "service_uknoew8";
-const EMAILJS_TEMPLATE_ID = "template_4s68zyc";
-const EMAILJS_PUBLIC_KEY = "nwnwK8c61u6MfQzdI";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -27,36 +22,22 @@ export const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       toast({ title: "Please fill in all fields", variant: "destructive" });
       return;
     }
     setSending(true);
-    try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          name: form.name,
-          email: form.email,
-          message: form.message,
-          title: `Portfolio contact from ${form.name}`,
-          from_name: form.name,
-          from_email: form.email,
-          reply_to: form.email,
-        },
-        { publicKey: EMAILJS_PUBLIC_KEY },
-      );
-      toast({ title: "Message sent!", description: "Thanks for reaching out — I'll get back to you soon." });
+    // Open mail client with prefilled content
+    const subject = encodeURIComponent(`Portfolio contact from ${form.name}`);
+    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
+    window.location.href = `mailto:nirmal.cse.37@gmail.com?subject=${subject}&body=${body}`;
+    setTimeout(() => {
+      toast({ title: "Opening your mail client...", description: "Thanks for reaching out!" });
       setForm({ name: "", email: "", message: "" });
-    } catch (err) {
-      console.error("EmailJS error:", err);
-      toast({ title: "Failed to send", description: "Please try again or email me directly.", variant: "destructive" });
-    } finally {
       setSending(false);
-    }
+    }, 600);
   };
 
   return (
