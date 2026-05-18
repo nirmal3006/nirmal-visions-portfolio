@@ -18,6 +18,21 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Stuttering Detection with CNN + BiLSTM",
+    category: "AI",
+    description:
+      "Hybrid CNN–BiLSTM model that detects stuttering patterns (repetitions, prolongations, blocks) and reconstructs fluent speech via ASR, NLP refinement, and TTS — surfaced through an interactive diagnostic dashboard.",
+    features: [
+      "MFCC-based acoustic feature extraction",
+      "Whisper ASR + spaCy/NLTK NLP refinement",
+      "TTS reconstruction of fluent speech",
+      "Real-time and offline processing",
+    ],
+    tech: ["Python", "TensorFlow", "Keras", "Librosa", "Whisper", "Flask"],
+    github: "#",
+    emoji: "🗣️",
+  },
+  {
     title: "AI-Powered Recommendation Engine",
     category: "AI",
     description:
