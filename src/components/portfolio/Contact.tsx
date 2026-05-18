@@ -1,10 +1,15 @@
 import { Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
+
+const EMAILJS_SERVICE_ID = "service_uknoew8";
+const EMAILJS_TEMPLATE_ID = "template_4s68zyc";
+const EMAILJS_PUBLIC_KEY = "nwnwK8c61u6MfQzdI";
 
 const contactItems = [
   { icon: Mail, label: "Email", value: "nirmal.cse.37@gmail.com", href: "mailto:nirmal.cse.37@gmail.com" },
@@ -19,25 +24,42 @@ const contactItems = [
 ];
 
 export const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [sending, setSending] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
-      toast({ title: "Please fill in all fields", variant: "destructive" });
+      toast({ title: "Please fill in name, email and message", variant: "destructive" });
+      return;
+    }
+    if (form.phone && !/^[+\d\s()-]{6,20}$/.test(form.phone)) {
+      toast({ title: "Please enter a valid phone number", variant: "destructive" });
       return;
     }
     setSending(true);
-    // Open mail client with prefilled content
-    const subject = encodeURIComponent(`Portfolio contact from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-    window.location.href = `mailto:nirmal.cse.37@gmail.com?subject=${subject}&body=${body}`;
-    setTimeout(() => {
-      toast({ title: "Opening your mail client...", description: "Thanks for reaching out!" });
-      setForm({ name: "", email: "", message: "" });
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          phone: form.phone || "Not provided",
+          message: form.message,
+          reply_to: form.email,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+      toast({ title: "Message sent!", description: "Thanks for reaching out — I'll get back to you soon." });
+      setForm({ name: "", email: "", phone: "", message: "" });
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      toast({ title: "Failed to send message", description: "Please try again or email me directly.", variant: "destructive" });
+    } finally {
       setSending(false);
-    }, 600);
+    }
   };
 
   return (
@@ -79,6 +101,7 @@ export const Contact = () => {
           </div>
 
           <form
+            ref={formRef}
             onSubmit={handleSubmit}
             className="rounded-2xl bg-gradient-card border border-border p-6 sm:p-8 shadow-card space-y-5"
           >
@@ -90,6 +113,7 @@ export const Contact = () => {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="Your name"
+                  maxLength={100}
                 />
               </div>
               <div className="space-y-2">
@@ -100,8 +124,22 @@ export const Contact = () => {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="you@example.com"
+                  maxLength={255}
                 />
               </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="phone">
+                Phone <span className="text-muted-foreground font-normal">(optional)</span>
+              </Label>
+              <Input
+                id="phone"
+                type="tel"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                placeholder="+91 98765 43210"
+                maxLength={20}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="message">Message</Label>
@@ -111,6 +149,7 @@ export const Contact = () => {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 placeholder="Tell me about your project, role, or idea..."
+                maxLength={1000}
               />
             </div>
             <Button
