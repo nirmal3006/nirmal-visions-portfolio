@@ -1,5 +1,10 @@
 import { Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID = "service_uknoew8";
+const EMAILJS_TEMPLATE_ID = "template_4s68zyc";
+const EMAILJS_PUBLIC_KEY = "nwnwK8c61u6MfQzdI";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
