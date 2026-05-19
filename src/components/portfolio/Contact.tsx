@@ -45,8 +45,12 @@ export const Contact = () => {
         EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
+          name: form.name,
           from_email: form.email,
+          email: form.email,
           phone: form.phone || "Not provided",
+          phone_number: form.phone || "Not provided",
+          contact_number: form.phone || "Not provided",
           message: form.message,
           reply_to: form.email,
         },
