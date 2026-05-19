@@ -80,7 +80,7 @@ export const Hero = () => {
               </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full px-7 border-primary/40 hover:bg-primary/10">
-              <a href="#projects">View Projects</a>
+              <a href="#skills ">View Projects</a>
             </Button>
             <Button asChild size="lg" variant="ghost" className="rounded-full px-7">
               <a href="/resume.pdf" download>
