@@ -5,7 +5,7 @@ const experiences = [
     role: "Game Developer Intern",
     company: "Clover Technology",
     location: "Coimbatore",
-    period: "2025 — Present",
+    period: "2025 — 2026",
     points: [
       "Building 3D models and animations for interactive game environments.",
       "Developing gameplay mechanics and visual effects in Unreal Engine.",
@@ -16,7 +16,7 @@ const experiences = [
   {
     role: "Data Analytics Intern",
     company: "IPCS Global Pvt Ltd",
-    location: "Remote",
+    location: "Coimbatore",
     period: "2025",
     points: [
       "Performed data cleaning and transformation on real-world datasets.",
