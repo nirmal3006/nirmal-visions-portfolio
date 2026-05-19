@@ -83,7 +83,7 @@ export const Hero = () => {
               <a href="#skills ">View Projects</a>
             </Button>
             <Button asChild size="lg" variant="ghost" className="rounded-full px-7">
-              <a href="/resume.pdf" download>
+              <a href="/resume.pdf" download="Nirmal_Gopalakrishnan.pdf">
                 <Download className="mr-1.5 h-4 w-4" /> Resume
               </a>
             </Button>
