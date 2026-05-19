@@ -63,9 +63,14 @@ export const Skills = () => {
                 </div>
                 <h3 className="font-display text-lg font-semibold">{g.title}</h3>
               </div>
-              <div className="space-y-4">
+              <div className="flex flex-wrap gap-2">
                 {g.skills.map((s) => (
-                  <SkillBar key={s.name} skill={s} visible={visible} />
+                  <span
+                    key={s.name}
+                    className="px-3 py-1.5 rounded-full text-sm font-medium bg-secondary border border-border text-foreground"
+                  >
+                    {s.name}
+                  </span>
                 ))}
               </div>
             </div>
