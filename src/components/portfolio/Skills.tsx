@@ -43,7 +43,7 @@ export const Skills = () => {
         <div className="max-w-2xl mb-16">
           <p className="font-mono text-sm text-primary mb-3">/ skills</p>
           <h2 className="font-display text-4xl sm:text-5xl font-bold mb-4">
-            Tools of the <span className="text-gradient">trade</span>
+            Skills <span className="text-gradient">trade</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             A growing toolkit spanning AI/ML, software engineering, game development,
