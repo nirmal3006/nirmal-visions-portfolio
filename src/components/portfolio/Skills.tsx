@@ -38,14 +38,14 @@ const groups: Group[] = [
 
 export const Skills = () => {
   return (
-    <section id="skills" className="py-24 sm:py-32 bg-secondary/30 relative">
+    <section id="skills" className="py-20 sm:py-28 lg:py-32 bg-secondary/30 relative">
       <div className="container">
-        <div className="max-w-2xl mb-16">
-          <p className="font-mono text-sm text-primary mb-3">/ skills</p>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold mb-4">
-            Skills <span className="text-gradient">trade</span>
+        <div className="max-w-2xl mb-12 sm:mb-16">
+          <p className="font-mono text-xs sm:text-sm text-primary mb-3 tracking-wider uppercase">/ skills</p>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-[1.1] tracking-tight">
+            My <span className="text-gradient">Skills</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             A growing toolkit spanning AI/ML, software engineering, game development,
             and data analytics.
           </p>
