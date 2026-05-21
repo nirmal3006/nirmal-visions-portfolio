@@ -1,4 +1,6 @@
 import { GraduationCap, Sparkles } from "lucide-react";
+import training1 from "@/assets/training-1.jpg";
+import training2 from "@/assets/training-2.jpg";
 
 const skills = [
   "NX CAD Modeling",
@@ -10,7 +12,8 @@ const skills = [
 ];
 
 const photos: { src: string; alt: string }[] = [
-  // Add image entries here, e.g. { src: "/training-1.jpg", alt: "Naan Mudhalvan training session" }
+  { src: training1, alt: "Naan Mudhalvan NX CAD training session at Christ The King Polytechnic College" },
+  { src: training2, alt: "Corporate training classroom session with engineering students" },
 ];
 
 export const Extra = () => {
